@@ -45,7 +45,7 @@ public class MagicCoinsMod {
 	public static final String MODID = "magic_coins";
 
 	public MagicCoinsMod(IEventBus modEventBus, ModContainer modContainer) {
-		NeoForge.EVENT_BUS.register(this);
+		NeoForge.EVENT_BUS.register(MagicCoinsMod.class);
 		modEventBus.addListener(this::registerNetworking);
 
 		TabsInit.REGISTRY.register(modEventBus);
