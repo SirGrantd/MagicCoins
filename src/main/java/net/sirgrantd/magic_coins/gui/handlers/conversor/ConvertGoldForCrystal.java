@@ -57,14 +57,14 @@ public record ConvertGoldForCrystal(int x, int y, int z) implements CustomPacket
         }
 
         if (player.getCapability(Capabilities.ItemHandler.ENTITY, null) instanceof IItemHandlerModifiable itemHandlerModifiable) {
-            int goldCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.GOLD_COIN.get()) * MagicCoinsApi.getValueGoldCoins();
+            double goldCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.GOLD_COIN.get()) * MagicCoinsApi.getValueGoldCoins();
             
             if (goldCoins >= MagicCoinsApi.getValueCrystalCoins()) {
 
-                int crystalCoins = goldCoins / MagicCoinsApi.getValueCrystalCoins();
-                int remainingGoldCoins = goldCoins % MagicCoinsApi.getValueCrystalCoins();
+                int crystalCoins = (int) (goldCoins / MagicCoinsApi.getValueCrystalCoins());
+                int remainingGoldCoins = (int) (goldCoins % MagicCoinsApi.getValueCrystalCoins());
 
-                Utils.removeItemsFromInventory(player, ItemsInit.GOLD_COIN.get(), (goldCoins / MagicCoinsApi.getValueGoldCoins())-(remainingGoldCoins / MagicCoinsApi.getValueGoldCoins()));
+                Utils.removeItemsFromInventory(player, ItemsInit.GOLD_COIN.get(), (int) ((goldCoins / MagicCoinsApi.getValueGoldCoins())-(remainingGoldCoins / MagicCoinsApi.getValueGoldCoins())));
 
                 ItemStack crystalCoin = new ItemStack(ItemsInit.CRYSTAL_COIN.get(), crystalCoins);
                 if (!player.getInventory().add(crystalCoin)) {

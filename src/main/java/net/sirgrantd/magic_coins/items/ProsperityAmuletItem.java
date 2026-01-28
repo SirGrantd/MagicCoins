@@ -10,11 +10,10 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
+import net.sirgrantd.sg_economy.api.SGEconomyApi;
+import net.sirgrantd.sg_economy.api.event.EconomyEventProvider;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import net.sirgrantd.magic_coins.api.MagicCoinsApi;
 
 public class ProsperityAmuletItem extends Item implements ICurioItem {
     public ProsperityAmuletItem() {
@@ -30,7 +29,8 @@ public class ProsperityAmuletItem extends Item implements ICurioItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-        boolean isEffect = MagicCoinsApi.getPercentageCoinsSaveOnDeath() != 100;
+        EconomyEventProvider event = SGEconomyApi.getSGEconomyEvents();
+        boolean isEffect = event.getPercentageCoinsSaveOnDeath() != 100;
         super.appendHoverText(itemstack, context, list, flag);
 
         if (isEffect) {
@@ -40,17 +40,17 @@ public class ProsperityAmuletItem extends Item implements ICurioItem {
             list.add(Component.translatable("item.prosperity_amulet.description_0.effect_1").withStyle(style -> style.withItalic(true).withColor(ChatFormatting.GRAY)));
             list.add(Component.translatable("item.prosperity_amulet.description_1.effect_1").withStyle(style -> style.withItalic(true).withColor(ChatFormatting.GRAY)));
         }
-        
     }
-
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        MagicCoinsApi.setIsCoinsLostOnDeath(slotContext.entity(), true);
+        EconomyEventProvider event = SGEconomyApi.getSGEconomyEvents();
+        event.setCoinsLostOnDeath(slotContext.entity(), false);
     }
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        MagicCoinsApi.setIsCoinsLostOnDeath(slotContext.entity(), false);
+        EconomyEventProvider event = SGEconomyApi.getSGEconomyEvents();
+        event.setCoinsLostOnDeath(slotContext.entity(), true);
     }
 }

@@ -19,6 +19,8 @@ import net.sirgrantd.magic_coins.MagicCoinsMod;
 import net.sirgrantd.magic_coins.api.MagicCoinsApi;
 import net.sirgrantd.magic_coins.init.ItemsInit;
 import net.sirgrantd.magic_coins.utils.Utils;
+import net.sirgrantd.sg_economy.api.SGEconomyApi;
+import net.sirgrantd.sg_economy.api.economy.EconomyProvider;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public record CollectAllCoinsInventory(int x, int y, int z) implements CustomPacketPayload {
@@ -56,6 +58,8 @@ public record CollectAllCoinsInventory(int x, int y, int z) implements CustomPac
         }
 
         if (player.getCapability(Capabilities.ItemHandler.ENTITY, null) instanceof IItemHandlerModifiable itemHandlerModifiable) {
+            EconomyProvider economy = SGEconomyApi.getSGEconomy();
+
             int silverCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.SILVER_COIN.get());
             int goldCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.GOLD_COIN.get());
             int crystalCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.CRYSTAL_COIN.get());
@@ -64,12 +68,16 @@ public record CollectAllCoinsInventory(int x, int y, int z) implements CustomPac
             Utils.removeItemsFromInventory(player, ItemsInit.GOLD_COIN.get(), goldCoins);
             Utils.removeItemsFromInventory(player, ItemsInit.CRYSTAL_COIN.get(), crystalCoins);
 
-            int totalCoins = 
+            double totalCoins = 
                 silverCoins * MagicCoinsApi.getValueSilverCoins() +
                 goldCoins * MagicCoinsApi.getValueGoldCoins() +
                 crystalCoins * MagicCoinsApi.getValueCrystalCoins();
 
-            MagicCoinsApi.addCoins(player, totalCoins);
+            if (economy.isDecimalCurrency()) {
+                economy.addCurrency(player, totalCoins);
+            } else {
+                economy.addCoins(player, (int) totalCoins);
+            }
         }
     }
 

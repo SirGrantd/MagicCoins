@@ -19,7 +19,7 @@ public class SilverCoinItem extends BaseCoinItemApi {
     }
 
     @Override
-    protected int getCoinValue() {
+    protected double getCoinValue() {
         return MagicCoinsApi.getValueSilverCoins();
     }
 

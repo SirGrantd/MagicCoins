@@ -67,6 +67,7 @@ tasks.withType(ProcessResources).configureEach {
         logo_file: logo_file,
         // CONFIGS LIBS
         curios_version: curios_version,
+        sg_economy_version: sg_economy_version
     ]
     inputs.properties replaceProperties
 

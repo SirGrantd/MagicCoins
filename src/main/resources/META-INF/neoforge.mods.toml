@@ -32,3 +32,10 @@ license="${mod_license}"
     versionRange="[${curios_version},)"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="sg_economy"
+    type="required"
+    versionRange="[${sg_economy_version},)"
+    ordering="NONE"
+    side="BOTH"

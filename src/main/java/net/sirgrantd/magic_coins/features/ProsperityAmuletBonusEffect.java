@@ -1,7 +1,8 @@
 package net.sirgrantd.magic_coins.features;
 
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.sirgrantd.magic_coins.api.MagicCoinsApi;
+import net.sirgrantd.sg_economy.api.SGEconomyApi;
+import net.sirgrantd.sg_economy.api.event.EconomyEventProvider;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -22,9 +23,11 @@ public class ProsperityAmuletBonusEffect {
 	}
 
 	private static void handlePlayerAttacked(Player player) {
+        EconomyEventProvider event = SGEconomyApi.getSGEconomyEvents();
+
 		boolean effectBonusActive = 
-			MagicCoinsApi.getPercentageCoinsSaveOnDeath() == 100 &&
-			MagicCoinsApi.isCoinsLostOnDeath(player);
+			event.getPercentageCoinsSaveOnDeath() == 100 &&
+			event.isCoinsLostOnDeath(player);
 		
 		float health = player.getHealth();
 		float maxHealth = player.getMaxHealth();

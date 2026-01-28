@@ -57,14 +57,15 @@ public record ConvertSilverForGold(int x, int y, int z) implements CustomPacketP
         }
 
         if (player.getCapability(Capabilities.ItemHandler.ENTITY, null) instanceof IItemHandlerModifiable itemHandlerModifiable) {
-            int silverCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.SILVER_COIN.get());
+            
+            double silverCoins = Utils.countItems(itemHandlerModifiable, ItemsInit.SILVER_COIN.get());
             
             if (silverCoins >= MagicCoinsApi.getValueGoldCoins()) {
 
-                int goldCoins = silverCoins / MagicCoinsApi.getValueGoldCoins();
-                int remainingSilverCoins = silverCoins % MagicCoinsApi.getValueGoldCoins();
+                int goldCoins = (int) (silverCoins / MagicCoinsApi.getValueGoldCoins());
+                int remainingSilverCoins = (int) (silverCoins % MagicCoinsApi.getValueGoldCoins());
 
-                Utils.removeItemsFromInventory(player, ItemsInit.SILVER_COIN.get(), silverCoins-remainingSilverCoins);
+                Utils.removeItemsFromInventory(player, ItemsInit.SILVER_COIN.get(), (int) (silverCoins-remainingSilverCoins));
 
                 ItemStack goldCoin = new ItemStack(ItemsInit.GOLD_COIN.get(), goldCoins);
                 if (!player.getInventory().add(goldCoin)) {

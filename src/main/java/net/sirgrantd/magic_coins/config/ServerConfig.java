@@ -10,43 +10,44 @@ import net.sirgrantd.magic_coins.MagicCoinsMod;
 @EventBusSubscriber(modid = MagicCoinsMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ServerConfig {
 
-    public static int goldCoinsValue;
-    public static int crystalCoinsValue;
-    public static int silverCoinsValue;
-    public static int percentageCoinsSaveOnDeath;
+    public static double goldCoinsValue;
+    public static double crystalCoinsValue;
+    public static double silverCoinsValue;
     public static boolean coinsLootChests;
 
     public static class Config {
         public static final ModConfigSpec.Builder CONFIG_BUILDER = new ModConfigSpec.Builder();
 
-        public static final ModConfigSpec.ConfigValue<Integer> SILVER_COIN_VALUE;
-        public static final ModConfigSpec.ConfigValue<Integer> GOLD_COIN_VALUE;
-        public static final ModConfigSpec.ConfigValue<Integer> CRYSTAL_COIN_VALUE;
-        public static final ModConfigSpec.ConfigValue<Integer> PERCENTAGE_COINS_SAVE_ON_DEATH;
+        public static final ModConfigSpec.ConfigValue<Double> SILVER_COIN_VALUE;
+        public static final ModConfigSpec.ConfigValue<Double> GOLD_COIN_VALUE;
+        public static final ModConfigSpec.ConfigValue<Double> CRYSTAL_COIN_VALUE;
         public static final ModConfigSpec.ConfigValue<Boolean> COINS_LOOT_CHESTS;
 
         static {
-            CONFIG_BUILDER.push("COINS");
+            CONFIG_BUILDER.push("COINS_SILVER");
 
             SILVER_COIN_VALUE = CONFIG_BUILDER
                 .comment("The value of a silver coin")
-                .defineInRange("silverMagicValue", 1, 1, 100);
-
-            GOLD_COIN_VALUE = CONFIG_BUILDER
-                .comment("The value of a gold coin")
-                .defineInRange("goldMagicValue", 50, 1, 500);
-
-            CRYSTAL_COIN_VALUE = CONFIG_BUILDER
-                .comment("The value of a crystal coin")
-                .defineInRange("crystalMagicValue", 2500, 1, 25000);
+                .comment("WARNING: When considering an economic system that operates only with integers, values are automatically rounded up. For example, a value of 1.5 is treated as 2.")
+                .defineInRange("silverMagicValue", 1.0, 0.01, 1000000.0);
 
             CONFIG_BUILDER.pop();
 
-            CONFIG_BUILDER.push("DEATH");
+            CONFIG_BUILDER.push("COINS_GOLD");
 
-            PERCENTAGE_COINS_SAVE_ON_DEATH = CONFIG_BUILDER
-                .comment("The percentage of coins save on death")
-                .defineInRange("percentageCoinsSaveOnDeath", 50, 0, 100);
+            GOLD_COIN_VALUE = CONFIG_BUILDER
+                .comment("The value of a gold coin")
+                .comment("WARNING: When considering an economic system that operates only with integers, values are automatically rounded up. For example, a value of 1.5 is treated as 2.")
+                .defineInRange("goldMagicValue", 50.0, 0.01, 1000000.0);
+
+            CONFIG_BUILDER.pop();
+
+            CONFIG_BUILDER.push("COINS_CRYSTAL");
+
+            CRYSTAL_COIN_VALUE = CONFIG_BUILDER
+                .comment("The value of a crystal coin")
+                .comment("WARNING: When considering an economic system that operates only with integers, values are automatically rounded up. For example, a value of 1.5 is treated as 2.")
+                .defineInRange("crystalMagicValue", 2500.0, 0.01, 1000000.0);
 
             CONFIG_BUILDER.pop();
 
@@ -68,7 +69,6 @@ public class ServerConfig {
         silverCoinsValue = Config.SILVER_COIN_VALUE.get();
         goldCoinsValue = Config.GOLD_COIN_VALUE.get();
         crystalCoinsValue = Config.CRYSTAL_COIN_VALUE.get();
-        percentageCoinsSaveOnDeath = Config.PERCENTAGE_COINS_SAVE_ON_DEATH.get();
         coinsLootChests = Config.COINS_LOOT_CHESTS.get();
     }
 
@@ -87,7 +87,6 @@ public class ServerConfig {
         silverCoinsValue = 0;
         goldCoinsValue = 0;
         crystalCoinsValue = 0;
-        percentageCoinsSaveOnDeath = 0;
         coinsLootChests = false;
     }
 }

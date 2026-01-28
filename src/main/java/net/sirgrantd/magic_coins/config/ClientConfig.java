@@ -13,224 +13,170 @@ import net.sirgrantd.magic_coins.MagicCoinsMod;
 
 @EventBusSubscriber(modid = MagicCoinsMod.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientConfig {
+    // Collect Coins Button
+    public static int xCollectCoins;
+    public static int yCollectCoins;
+    public static boolean enableConvertButtons;
 
-    public static int xDisplayCoins;
-    public static int yDisplayCoins;
+    // Buttons
+    public static int xSilverButton, ySilverButton;
+    public static boolean enableSilverButton;
 
-    // Collect buttons
+    public static int xGoldButton, yGoldButton;
+    public static boolean enableGoldButton;
 
-    public static int xSilverButton;
-    public static int ySilverButton;
-
-    public static int xGoldButton;
-    public static int yGoldButton;
-
-    public static int xCrystalButton;
-    public static int yCrystalButton;
-
-    // Convert buttons
+    public static int xCrystalButton, yCrystalButton;
+    public static boolean enableCrystalButton;
 
     public static boolean enableSilverForGoldButton;
-    public static int xSilverForGoldButton;
-    public static int ySilverForGoldButton;
+    public static int xSilverForGoldButton, ySilverForGoldButton;
 
     public static boolean enableGoldForSilverButton;
-    public static int xGoldForSilverButton;
-    public static int yGoldForSilverButton;
+    public static int xGoldForSilverButton, yGoldForSilverButton;
 
     public static boolean enableGoldForCrystalButton;
-    public static int xGoldForCrystalButton;
-    public static int yGoldForCrystalButton;
+    public static int xGoldForCrystalButton, yGoldForCrystalButton;
 
     public static boolean enableCrystalForGoldButton;
-    public static int xCrystalForGoldButton;
-    public static int yCrystalForGoldButton;
-
-    // --------------------------------------------
+    public static int xCrystalForGoldButton, yCrystalForGoldButton;
 
     public static class Config {
-        public static final Supplier<Integer> X_DISPLAY_COINS;
-        public static final Supplier<Integer> Y_DISPLAY_COINS;
+        public static ModConfigSpec SPEC;
+        // Collect Coins Button
+        public static final Supplier<Integer> X_COLLECT_COINS;
+        public static final Supplier<Integer> Y_COLLECT_COINS;
+        public static final Supplier<Boolean> ENABLE_CONVERT_BUTTONS;
 
+        // Silver Button
+        public static final Supplier<Boolean> ENABLE_SILVER_BUTTON;
         public static final Supplier<Integer> X_SILVER_BUTTON;
         public static final Supplier<Integer> Y_SILVER_BUTTON;
 
+        // Gold Button
+        public static final Supplier<Boolean> ENABLE_GOLD_BUTTON;
         public static final Supplier<Integer> X_GOLD_BUTTON;
         public static final Supplier<Integer> Y_GOLD_BUTTON;
 
+        // Crystal Button
+        public static final Supplier<Boolean> ENABLE_CRYSTAL_BUTTON;
         public static final Supplier<Integer> X_CRYSTAL_BUTTON;
         public static final Supplier<Integer> Y_CRYSTAL_BUTTON;
 
+        // Silver for Gold Button
         public static final Supplier<Boolean> ENABLE_SILVER_FOR_GOLD_BUTTON;
-
         public static final Supplier<Integer> X_SILVER_FOR_GOLD_BUTTON;
         public static final Supplier<Integer> Y_SILVER_FOR_GOLD_BUTTON;
 
+        // Gold for Silver Button
         public static final Supplier<Boolean> ENABLE_GOLD_FOR_SILVER_BUTTON;
-
         public static final Supplier<Integer> X_GOLD_FOR_SILVER_BUTTON;
         public static final Supplier<Integer> Y_GOLD_FOR_SILVER_BUTTON;
 
+        // Gold for Crystal Button
         public static final Supplier<Boolean> ENABLE_GOLD_FOR_CRYSTAL_BUTTON;
-
         public static final Supplier<Integer> X_GOLD_FOR_CRYSTAL_BUTTON;
         public static final Supplier<Integer> Y_GOLD_FOR_CRYSTAL_BUTTON;
 
+        // Crystal for Gold Button
         public static final Supplier<Boolean> ENABLE_CRYSTAL_FOR_GOLD_BUTTON;
-
         public static final Supplier<Integer> X_CRYSTAL_FOR_GOLD_BUTTON;
         public static final Supplier<Integer> Y_CRYSTAL_FOR_GOLD_BUTTON;
 
         static {
-            ModConfigSpec.Builder CONFIG_BUILDER = new ModConfigSpec.Builder();
+            ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
-            // Displays
+            // Collect Coins Button group           
+            builder.push("COLLECT_COINS_BUTTON");
+            X_COLLECT_COINS = builder.comment("X position for coin button").comment("Tips: 80 for align for right side").defineInRange("xCollectCoins", 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            Y_COLLECT_COINS = builder.comment("Y position for coin button").defineInRange("yCollectCoins", 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            ENABLE_CONVERT_BUTTONS = builder.comment("Enable convert buttons on collect coins button").define("enableConvertButtons", true);
+            builder.pop();
 
-            CONFIG_BUILDER.push("DISPLAYS");
+            // Silver Button group
+            builder.push("SILVER_BUTTON");
+            ENABLE_SILVER_BUTTON = builder.comment("Enable silver button").define("enableSilverButton", true);
+            X_SILVER_BUTTON = builder.comment("X position of silver button").defineInRange("xSilverButton", 0, -750, 750);
+            Y_SILVER_BUTTON = builder.comment("Y position of silver button").defineInRange("ySilverButton", 0, -750, 750);
+            builder.pop();
 
-            X_DISPLAY_COINS = CONFIG_BUILDER
-                .comment("The x position of the display for coins")
-                .defineInRange("xDisplayCoins", 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            // Gold Button group
+            builder.push("GOLD_BUTTON");
+            ENABLE_GOLD_BUTTON = builder.comment("Enable gold button").define("enableGoldButton", true);
+            X_GOLD_BUTTON = builder.comment("X position of gold button").defineInRange("xGoldButton", 0, -750, 750);
+            Y_GOLD_BUTTON = builder.comment("Y position of gold button").defineInRange("yGoldButton", 0, -750, 750);
+            builder.pop();
 
-            Y_DISPLAY_COINS = CONFIG_BUILDER
-                .comment("The y position of the display for coins")
-                .defineInRange("yDisplayCoins", 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            // Crystal Button group
+            builder.push("CRYSTAL_BUTTON");
+            ENABLE_CRYSTAL_BUTTON = builder.comment("Enable crystal button").define("enableCrystalButton", true);
+            X_CRYSTAL_BUTTON = builder.comment("X position of crystal button").defineInRange("xCrystalButton", 0, -750, 750);
+            Y_CRYSTAL_BUTTON = builder.comment("Y position of crystal button").defineInRange("yCrystalButton", 0, -750, 750);
+            builder.pop();
 
-            CONFIG_BUILDER.pop();
+            // Silver for Gold Button
+            builder.push("SILVER_FOR_GOLD_BUTTON");
+            ENABLE_SILVER_FOR_GOLD_BUTTON = builder.comment("Enable silver-for-gold button").define("enableSilverForGoldButton", false);
+            X_SILVER_FOR_GOLD_BUTTON = builder.comment("X position").defineInRange("xSilverForGoldButton", 0, -750, 750);
+            Y_SILVER_FOR_GOLD_BUTTON = builder.comment("Y position").defineInRange("ySilverForGoldButton", 0, -750, 750);
+            builder.pop();
 
-            // Buttons
+            // Gold for Silver Button
+            builder.push("GOLD_FOR_SILVER_BUTTON");
+            ENABLE_GOLD_FOR_SILVER_BUTTON = builder.comment("Enable gold-for-silver button").define("enableGoldForSilverButton", false);
+            X_GOLD_FOR_SILVER_BUTTON = builder.comment("X position").defineInRange("xGoldForSilverButton", 0, -750, 750);
+            Y_GOLD_FOR_SILVER_BUTTON = builder.comment("Y position").defineInRange("yGoldForSilverButton", 0, -750, 750);
+            builder.pop();
 
-            CONFIG_BUILDER.push("BUTTONS");
+            // Gold for Crystal Button
+            builder.push("GOLD_FOR_CRYSTAL_BUTTON");
+            ENABLE_GOLD_FOR_CRYSTAL_BUTTON = builder.comment("Enable gold-for-crystal button").define("enableGoldForCrystalButton", false);
+            X_GOLD_FOR_CRYSTAL_BUTTON = builder.comment("X position").defineInRange("xGoldForCrystalButton", 0, -750, 750);
+            Y_GOLD_FOR_CRYSTAL_BUTTON = builder.comment("Y position").defineInRange("yGoldForCrystalButton", 0, -750, 750);
+            builder.pop();
 
-            // Collect buttons
+            // Crystal for Gold Button
+            builder.push("CRYSTAL_FOR_GOLD_BUTTON");
+            ENABLE_CRYSTAL_FOR_GOLD_BUTTON = builder.comment("Enable crystal-for-gold button").define("enableCrystalForGoldButton", false);
+            X_CRYSTAL_FOR_GOLD_BUTTON = builder.comment("X position").defineInRange("xCrystalForGoldButton", 0, -750, 750);
+            Y_CRYSTAL_FOR_GOLD_BUTTON = builder.comment("Y position").defineInRange("yCrystalForGoldButton", 0, -750, 750);
+            builder.pop();
 
-            X_SILVER_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button for silver coins")
-                .defineInRange("xSilverButton", 0, -750, 750);
-
-            Y_SILVER_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button for silver coins")
-                .defineInRange("ySilverButton", 0, -750, 750);
-
-            X_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button for gold coins")
-                .defineInRange("xGoldButton", 0, -750, 750);
-
-            Y_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button for gold coins")
-                .defineInRange("yGoldButton", 0, -750, 750);
-
-            X_CRYSTAL_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button for crystal coins")
-                .defineInRange("xCrystalButton", 0, -750, 750);
-
-            Y_CRYSTAL_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button for crystal coins")
-                .defineInRange("yCrystalButton", 0, -750, 750);
-
-            // Convert buttons
-
-            ENABLE_SILVER_FOR_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("Enable the button to convert silver coins to gold coins")
-                .define("enableSilverForGoldButton", false);
-            
-            X_SILVER_FOR_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button to convert silver coins to gold coins")
-                .defineInRange("xSilverForGoldButton", 0, -750, 750);
-
-            Y_SILVER_FOR_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button to convert silver coins to gold coins")
-                .defineInRange("ySilverForGoldButton", 0, -750, 750);
-
-            // --------------------------------------------
-
-            ENABLE_GOLD_FOR_SILVER_BUTTON = CONFIG_BUILDER
-                .comment("Enable the button to convert gold coins to silver coins")
-                .define("enableGoldForSilverButton", false);
-            
-            X_GOLD_FOR_SILVER_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button to convert gold coins to silver coins")
-                .defineInRange("xGoldForSilverButton", 0, -750, 750);
-            
-            Y_GOLD_FOR_SILVER_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button to convert gold coins to silver coins")
-                .defineInRange("yGoldForSilverButton", 0, -750, 750);
-
-            // --------------------------------------------
-            
-            ENABLE_GOLD_FOR_CRYSTAL_BUTTON = CONFIG_BUILDER
-                .comment("Enable the button to convert gold coins to crystal coins")
-                .define("enableGoldForCrystalButton", false);
-            
-            X_GOLD_FOR_CRYSTAL_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button to convert gold coins to crystal coins")
-                .defineInRange("xGoldForCrystalButton", 0, -750, 750);
-            
-            Y_GOLD_FOR_CRYSTAL_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button to convert gold coins to crystal coins")
-                .defineInRange("yGoldForCrystalButton", 0, -750, 750);
-
-            // --------------------------------------------
-            
-            ENABLE_CRYSTAL_FOR_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("Enable the button to convert crystal coins to gold coins")
-                .define("enableCrystalForGoldButton", false);
-            
-            X_CRYSTAL_FOR_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("The x position of the button to convert crystal coins to gold coins")
-                .defineInRange("xCrystalForGoldButton", 0, -750, 750);
-            
-            Y_CRYSTAL_FOR_GOLD_BUTTON = CONFIG_BUILDER
-                .comment("The y position of the button to convert crystal coins to gold coins")
-                .defineInRange("yCrystalForGoldButton", 0, -750, 750);
-
-            CONFIG_BUILDER.pop();
-
-            SPEC = CONFIG_BUILDER.build();
+            SPEC = builder.build();
         }
-
-        public static final ModConfigSpec SPEC;
     }
 
     private static void bakeConfig() {
-        xDisplayCoins = Config.X_DISPLAY_COINS.get();
-        yDisplayCoins = Config.Y_DISPLAY_COINS.get();
+        xCollectCoins = Config.X_COLLECT_COINS.get();
+        yCollectCoins = Config.Y_COLLECT_COINS.get();
+        enableConvertButtons = Config.ENABLE_CONVERT_BUTTONS.get();
 
-        // Collect buttons
-
+        enableSilverButton = Config.ENABLE_SILVER_BUTTON.get();
         xSilverButton = Config.X_SILVER_BUTTON.get();
         ySilverButton = Config.Y_SILVER_BUTTON.get();
 
+        enableGoldButton = Config.ENABLE_GOLD_BUTTON.get();
         xGoldButton = Config.X_GOLD_BUTTON.get();
         yGoldButton = Config.Y_GOLD_BUTTON.get();
 
+        enableCrystalButton = Config.ENABLE_CRYSTAL_BUTTON.get();
         xCrystalButton = Config.X_CRYSTAL_BUTTON.get();
         yCrystalButton = Config.Y_CRYSTAL_BUTTON.get();
-
-        // Convert buttons
 
         enableSilverForGoldButton = Config.ENABLE_SILVER_FOR_GOLD_BUTTON.get();
         xSilverForGoldButton = Config.X_SILVER_FOR_GOLD_BUTTON.get();
         ySilverForGoldButton = Config.Y_SILVER_FOR_GOLD_BUTTON.get();
 
-        // --------------------------------------------
-
         enableGoldForSilverButton = Config.ENABLE_GOLD_FOR_SILVER_BUTTON.get();
         xGoldForSilverButton = Config.X_GOLD_FOR_SILVER_BUTTON.get();
         yGoldForSilverButton = Config.Y_GOLD_FOR_SILVER_BUTTON.get();
-
-        // --------------------------------------------
 
         enableGoldForCrystalButton = Config.ENABLE_GOLD_FOR_CRYSTAL_BUTTON.get();
         xGoldForCrystalButton = Config.X_GOLD_FOR_CRYSTAL_BUTTON.get();
         yGoldForCrystalButton = Config.Y_GOLD_FOR_CRYSTAL_BUTTON.get();
 
-        // --------------------------------------------
-
         enableCrystalForGoldButton = Config.ENABLE_CRYSTAL_FOR_GOLD_BUTTON.get();
         xCrystalForGoldButton = Config.X_CRYSTAL_FOR_GOLD_BUTTON.get();
         yCrystalForGoldButton = Config.Y_CRYSTAL_FOR_GOLD_BUTTON.get();
-
     }
 
     @SubscribeEvent
@@ -239,5 +185,4 @@ public class ClientConfig {
             bakeConfig();
         }
     }
-    
 }

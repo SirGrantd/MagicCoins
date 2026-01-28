@@ -12,6 +12,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import net.sirgrantd.magic_coins.init.SoundsInit;
+import net.sirgrantd.sg_economy.api.SGEconomyApi;
+import net.sirgrantd.sg_economy.api.economy.EconomyProvider;
 
 public abstract class BaseCoinItemApi extends Item {
 
@@ -24,7 +26,7 @@ public abstract class BaseCoinItemApi extends Item {
         super(new Item.Properties().stacksTo(64).fireResistant().rarity(rarity));
     }
 
-    protected abstract int getCoinValue();
+    protected abstract double getCoinValue();
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -38,11 +40,20 @@ public abstract class BaseCoinItemApi extends Item {
             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.MAGIC_BAG_COLLECT_COINS.get(), player.getSoundSource());
         }
 
+        EconomyProvider economy = SGEconomyApi.getSGEconomy();
+
         ItemStack itemStack = player.getItemInHand(hand);
         int count = itemStack.getCount();
-        MagicCoinsApi.addCoins(player, count * getCoinValue());
+        
+        if (economy.isDecimalCurrency()) {
+            double totalCurrency = count * getCoinValue();
+            economy.addCurrency(player, totalCurrency);
+        } else {
+            double totalCoins = count * getCoinValue();
+            economy.addCoins(player, (int) totalCoins);
+        }
+        
         itemStack.shrink(count);
-
         return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 }

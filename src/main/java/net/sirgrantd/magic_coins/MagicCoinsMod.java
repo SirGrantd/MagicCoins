@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.Collection;
 import java.util.ArrayList;
 
-import net.sirgrantd.magic_coins.capabilities.CoinsBagCapabilities;
 import net.sirgrantd.magic_coins.config.ClientConfig;
 import net.sirgrantd.magic_coins.config.ServerConfig;
 import net.sirgrantd.magic_coins.gui.MagicCoinsButtonInventory;
@@ -53,8 +52,6 @@ public class MagicCoinsMod {
 
 		LootInit.register(modEventBus);
 		SoundsInit.register(modEventBus);
-
-		CoinsBagCapabilities.ATTACHMENT_TYPES.register(modEventBus);
 
 		modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.Config.SPEC, String.format("%s-client.toml", MODID));
 		modContainer.registerConfig(ModConfig.Type.SERVER, ServerConfig.Config.SPEC, String.format("%s-server.toml", MODID));
@@ -96,7 +93,7 @@ public class MagicCoinsMod {
 	}
 
 	@SubscribeEvent
-	public void tick(ServerTickEvent.Post event) {
+	public static void tick(ServerTickEvent.Post event) {
 		List<Tuple<Runnable, Integer>> actions = new ArrayList<>();
 		workQueue.forEach(work -> {
 			work.setB(work.getB() - 1);

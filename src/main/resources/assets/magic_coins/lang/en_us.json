@@ -10,11 +10,5 @@
     "item.prosperity_amulet.description_0.effect_0": "Protects the coins in",
     "item.prosperity_amulet.description_1.effect_0": "your pouch if you die",
     "item.prosperity_amulet.description_0.effect_1": "When health is below 50% grants a",
-    "item.prosperity_amulet.description_1.effect_1": "regeneration I effect for 3 seconds.",
-    "command.coins.add.success": "%2$s received %1$d %3$s",
-    "command.coins.set.success": "%2$s set to %1$d %3$s",
-    "command.coins.rank.title": "Magnates Ranking",
-    "text.coin": "coin",
-    "text.coins": "coins",
-    "text.page": "page"
+    "item.prosperity_amulet.description_1.effect_1": "regeneration I effect for 3 seconds."
 }
