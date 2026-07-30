@@ -1,0 +1,9 @@
+{
+    "entries": [
+      "magic_coins:common_rewards",
+      "magic_coins:uncommon_rewards",
+      "magic_coins:rare_rewards",
+      "magic_coins:epic_rewards"
+    ],
+    "replace": false
+  }

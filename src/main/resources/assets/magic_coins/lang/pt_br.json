@@ -1,0 +1,11 @@
+{
+    "item_group.magic_coins.magic_group": "Magic Coins",
+    "item.magic_coins.silver_coin": "Moeda de Prata",
+    "item.magic_coins.gold_coin": "Moeda de Ouro",
+    "item.magic_coins.crystal_coin": "Moeda de Cristal",
+    "item.magic_coins.prosperity_amulet": "Amuleto da Prosperidade",
+    "item.prosperity_amulet.description_0.effect_0": "Protege as moedas da",
+    "item.prosperity_amulet.description_1.effect_0": "sua bolsa caso você morra",
+    "item.prosperity_amulet.description_0": "Quando a vida estiver abaixo de 50%",
+    "item.prosperity_amulet.description_1": "Concede efeito de regeneração I por 3s"
+}

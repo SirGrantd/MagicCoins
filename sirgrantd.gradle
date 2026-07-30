@@ -1,0 +1,17 @@
+repositories {
+    maven {
+        name = "Curios"
+        url = uri("https://maven.theillusivec4.top/")
+    }
+    maven {
+        name = 'CurseMaven'
+        url "https://cursemaven.com"
+    }
+}
+
+dependencies {
+    implementation files("/libs/sg_economy-1.0.5.jar")
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    // implementation "curse.maven:sg-economy-api-1446971:8041335"
+}

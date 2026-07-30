@@ -1,0 +1,31 @@
+{
+  "type": "magic_coins:add_item",
+  "conditions": [],
+  "tier": "rare",
+  "loot_tables": [
+    "minecraft:chests/bastion_bridge",
+    "minecraft:chests/bastion_hoglin_stable",
+    "minecraft:chests/bastion_other",
+    "minecraft:chests/end_city_treasure"
+  ],
+  "items": [
+    {
+      "item": "magic_coins:silver_coin",
+      "chance": 0.8,
+      "min": 10,
+      "max": 20
+    },
+    {
+      "item": "magic_coins:gold_coin",
+      "chance": 0.4,
+      "min": 2,
+      "max": 4
+    },
+    {
+      "item": "magic_coins:crystal_coin",
+      "chance": 0.05,
+      "min": 1,
+      "max": 1
+    }
+  ]
+}
