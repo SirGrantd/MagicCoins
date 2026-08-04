@@ -1,0 +1,15 @@
+{
+    "item_group.magic_coins.magic_group": "Monedas Mágicas",
+    "item.magic_coins.silver_coin": "Moneda de Plata",
+    "item.magic_coins.gold_coin": "Moneda de Oro",
+    "item.magic_coins.crystal_coin": "Moneda de Cristal",
+    "tooltip.magic_coins.button.bag_button": "§dBolsa Mágica\n§e[Mantén Ctrl]§7 para más detalles.",
+    "tooltip.magic_coins.button.bag_button.details": "§dBolsa Mágica§r\n%1$s §eClic Izquierdo:\n§7Deposita todas las monedas del inventario.§r\n\n%2$s §eClic Derecho:\n§7Retira todas las monedas al inventario.§r\n\n%3$s §eo %4$s §e+ Mantener Shift:\n§7Comprime todas las monedas al nivel más alto.",
+    "tooltip.magic_coins.button.silver_button": "§7Botón de Plata\n§e[Mantén Ctrl]§7 para más detalles.",
+    "tooltip.magic_coins.button.silver_button.details": "§7Botón de Plata§r\n%1$s §eClic Izquierdo:\n§7Retira 1 Moneda de Plata al inventario.§r\n\n%2$s §e+ Mantener Shift:\n§7Retira 64 Monedas de Plata o tantas como sea posible al inventario.§r\n\n%3$s §eClic Derecho:\n§7Convierte todas las monedas de tu inventario a Monedas de Plata.\n\n%4$s §e+ Mantener Shift:\n§7Comprime todas las monedas de tu inventario a Monedas de Plata.",
+    "tooltip.magic_coins.button.gold_button": "§6Botón de Oro\n§e[Mantén Ctrl]§7 para más detalles.",
+    "tooltip.magic_coins.button.gold_button.details": "§6Botón de Oro§r\n%1$s §eClic Izquierdo:\n§7Retira 1 Moneda de Oro al inventario.§r\n\n%2$s §e+ Mantener Shift:\n§7Retira 64 Monedas de Oro o tantas como sea posible al inventario.§r\n\n%3$s §eClic Derecho:\n§7Convierte todas las monedas de tu inventario a Monedas de Oro.\n\n%4$s §e+ Mantener Shift:\n§7Comprime todas las monedas de tu inventario a Monedas de Oro.",
+    "tooltip.magic_coins.button.crystal_button": "§9Botón de Cristal\n§e[Mantén Ctrl]§7 para más detalles.",
+    "tooltip.magic_coins.button.crystal_button.details": "§9Botón de Cristal§r\n%1$s §eClic Izquierdo:\n§7Retira 1 Moneda de Cristal al inventario.§r\n\n%2$s §e+ Mantener Shift:\n§7Retira 64 Monedas de Cristal o tantas como sea posible al inventario.§r\n\n%3$s §eo %4$s §e+ Mantener Shift:\n§7Convierte todas las monedas de tu inventario a Monedas de Cristal.",
+    "sounds.magic_coins.collect_coins": "Sonido de monedas mágicas"
+}

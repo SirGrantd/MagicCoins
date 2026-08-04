@@ -1,0 +1,15 @@
+{
+    "item_group.magic_coins.magic_group": "Moedas Mágicas",
+    "item.magic_coins.silver_coin": "Moeda de Prata",
+    "item.magic_coins.gold_coin": "Moeda de Ouro",
+    "item.magic_coins.crystal_coin": "Moeda de Cristal",
+    "tooltip.magic_coins.button.bag_button": "§dBolsa Mágica\n§e[Segure Ctrl]§7 para mais detalhes.",
+    "tooltip.magic_coins.button.bag_button.details": "§dBolsa Mágica§r\n%1$s §eNo Clique Esquerdo:\n§7Deposita todas as moedas do inventário.§r\n\n%2$s §eNo Clique Direito:\n§7Saca todas as moedas para o inventário.§r\n\n%3$s §eou %4$s §e+ Segurar Shift:\n§7Converte todas as moedas para o nível mais alto.",
+    "tooltip.magic_coins.button.silver_button": "§7Botão de Prata\n§e[Segure Ctrl]§7 para mais detalhes.",
+    "tooltip.magic_coins.button.silver_button.details": "§7Botão de Prata§r\n%1$s §eNo Clique Esquerdo:\n§7Saca 1 Moeda de Prata para o inventário.§r\n\n%2$s §e+ Segurar Shift:\n§7Saca 64 Moedas de Prata ou o máximo possível para o inventário.§r\n\n%3$s §eNo Clique Direito:\n§7Converte todas as moedas do seu inventário em Moedas de Prata.\n\n%4$s §e+ Segurar Shift:\n§7Converte todas as moedas do seu inventário em Moedas de Prata.",
+    "tooltip.magic_coins.button.gold_button": "§6Botão de Ouro\n§e[Segure Ctrl]§7 para mais detalhes.",
+    "tooltip.magic_coins.button.gold_button.details": "§6Botão de Ouro§r\n%1$s §eNo Clique Esquerdo:\n§7Saca 1 Moeda de Ouro para o inventário.§r\n\n%2$s §e+ Segurar Shift:\n§7Saca 64 Moedas de Ouro ou o máximo possível para o inventário.§r\n\n%3$s §eNo Clique Direito:\n§7Converte todas as moedas do seu inventário em Moedas de Ouro.\n\n%4$s §e+ Segurar Shift:\n§7Converte todas as moedas do seu inventário em Moedas de Ouro.",
+    "tooltip.magic_coins.button.crystal_button": "§9Botão de Cristal\n§e[Segure Ctrl]§7 para mais detalhes.",
+    "tooltip.magic_coins.button.crystal_button.details": "§9Botão de Cristal§r\n%1$s §eNo Clique Esquerdo:\n§7Saca 1 Moeda de Cristal para o inventário.§r\n\n%2$s §e+ Segurar Shift:\n§7Saca 64 Moedas de Cristal ou o máximo possível para o inventário.§r\n\n%3$s §eou %4$s §e+ Segurar Shift:\n§7Converte todas as moedas do seu inventário em Moedas de Cristal.",
+    "sounds.magic_coins.collect_coins": "Barulho de moedas mágicas"
+}

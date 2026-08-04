@@ -1,0 +1,49 @@
+{
+    "providers": [
+        {
+            "type": "bitmap",
+            "file": "magic_coins:font/mouse_left_click.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": [
+                "\uE001"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "magic_coins:font/mouse_right_click.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": [
+                "\uE002"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "magic_coins:font/silver_coin.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": [
+                "\uE003"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "magic_coins:font/gold_coin.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": [
+                "\uE004"
+            ]
+        },
+        {
+            "type": "bitmap",
+            "file": "magic_coins:font/crystal_coin.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": [
+                "\uE005"
+            ]
+        }
+    ]
+}

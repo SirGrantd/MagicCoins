@@ -1,0 +1,22 @@
+repositories {
+    maven {
+        name = "Curios"
+        url = uri("https://maven.theillusivec4.top/")
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation files("/libs/sg_economy-26.1.0.jar")
+
+    implementation "net.sirgrantd:celesthyd:${celesthyd_version}"
+    jarJar "net.sirgrantd:celesthyd:${celesthyd_version}"
+
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+}

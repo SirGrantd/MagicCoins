@@ -1,0 +1,6 @@
+{
+    "model": {
+        "type": "minecraft:model",
+        "model": "magic_coins:item/silver_coin"
+    }
+}

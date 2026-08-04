@@ -1,0 +1,10 @@
+{
+    "item_group.magic_coins.magic_group": "Magic Coins",
+    "item.magic_coins.silver_coin": "银币",
+    "item.magic_coins.gold_coin": "金币",
+    "item.magic_coins.crystal_coin": "水晶币",
+    "button.magic_coins.tooltip.hold_shift": "[按住Shift] ",
+    "button.magic_coins.bag_button.tooltip.deposit": "存入所有硬币",
+    "button.magic_coins.bag_button.tooltip.withdraw": "取出所有硬币",
+    "button.magic_coins.bag_button.tooltip.shift": "压缩所有硬币"
+}

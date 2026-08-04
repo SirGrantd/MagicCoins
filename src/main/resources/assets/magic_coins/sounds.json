@@ -1,0 +1,8 @@
+{
+  "collect_coins": {
+    "subtitle": "sounds.magic_coins.collect_coins",
+    "sounds": [
+      "magic_coins:collect_coins"
+    ]
+  }
+}
