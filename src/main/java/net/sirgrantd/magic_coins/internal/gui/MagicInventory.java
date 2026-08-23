@@ -42,8 +42,8 @@ public class MagicInventory {
 
                         AbstractContainerScreen<?> gui = (AbstractContainerScreen<?>) screen;
 
-                        int xInvPos = gui.getLeftPos();
-                        int yInvPos = gui.getTopPos();
+                        int xInvPos = gui.getGuiLeft();
+                        int yInvPos = gui.getGuiTop();
 
                         if (ClientConfig.enableConvertButtons) {
                                 int xOffsetCollectCoins = (isCreativeInventory ? 2 + ClientConfig.xCollectCoinsCreative

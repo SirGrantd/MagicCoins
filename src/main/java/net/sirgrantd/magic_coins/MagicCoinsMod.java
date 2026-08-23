@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.sirgrantd.celesthyd.api.CelesthydApi;
 import net.sirgrantd.magic_coins.internal.config.ClientConfig;
 import net.sirgrantd.magic_coins.internal.config.LootConfigManager;
@@ -38,7 +38,7 @@ public class MagicCoinsMod {
 				String.format("%s-server.toml", MOD_ID));
 	}
 
-	public static void onCommonSetupEvent(FMLClientSetupEvent event) {
+	public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			CelesthydApi.registerConfigSync(() -> new SyncServerConfigS2C(ServerConfig.silverCoinsValue,
 					ServerConfig.goldCoinsValue, ServerConfig.crystalCoinsValue));

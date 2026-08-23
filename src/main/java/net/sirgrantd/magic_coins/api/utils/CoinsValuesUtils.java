@@ -11,7 +11,7 @@ import net.sirgrantd.magic_coins.internal.config.ServerConfig;
 public class CoinsValuesUtils {
 
     private static double verifyEnv(DoubleSupplier clientValue, double serverValue) {
-        return FMLEnvironment.getDist() == Dist.CLIENT ? clientValue.getAsDouble() : serverValue;
+        return FMLEnvironment.dist == Dist.CLIENT ? clientValue.getAsDouble() : serverValue;
     }
 
     // --- SILVER ---

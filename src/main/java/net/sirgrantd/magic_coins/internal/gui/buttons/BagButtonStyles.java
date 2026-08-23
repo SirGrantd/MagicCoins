@@ -4,15 +4,15 @@ import java.util.function.Supplier;
 
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.sirgrantd.magic_coins.MagicCoinsMod;
 import net.sirgrantd.magic_coins.internal.gui.font.MouseIcon;
 
 public class BagButtonStyles {
 
     public static final WidgetSprites SPRITES = new WidgetSprites(
-            Identifier.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "button_collect_coins"),
-            Identifier.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "button_collect_coins_highlighted"));
+            ResourceLocation.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "button_collect_coins"),
+            ResourceLocation.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "button_collect_coins_highlighted"));
 
     public static Supplier<Component> bagButtonTooltip = () -> Component
             .translatable("tooltip.magic_coins.button.bag_button");

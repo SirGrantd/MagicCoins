@@ -1,7 +1,7 @@
 package net.sirgrantd.magic_coins.api.item;
 
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.level.Level;
 import net.sirgrantd.magic_coins.internal.init.MagicCoinsSounds;
 import net.minecraft.world.entity.player.Player;
@@ -22,24 +22,25 @@ public abstract class BaseCoinItemApi extends Item {
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
         if (!level.isClientSide()) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
                     MagicCoinsSounds.MAGIC_BAG_COLLECT_COINS.get(),
-                    player.getSoundSource());
+                    player.getSoundSource(), 1.0F, 1.0F);
         }
 
         boolean isShiftKeyDown = player.isShiftKeyDown();
 
-        ItemStack itemStack = player.getItemInHand(hand);
         int count = !isShiftKeyDown ? itemStack.getCount() : 1;
         double getCurrentCoinValue = getCoinValue() * count;
         boolean isSuccessful = SGEconomyApi.depositBalance(player, getCurrentCoinValue);
 
         if (isSuccessful) {
             itemStack.shrink(count);
+            return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
         }
 
-        return InteractionResult.SUCCESS;
+        return InteractionResultHolder.pass(itemStack);
     }
 }

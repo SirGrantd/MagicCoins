@@ -4,7 +4,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.sirgrantd.magic_coins.MagicCoinsMod;
 
 public record SyncServerConfigS2C(
@@ -13,7 +13,7 @@ public record SyncServerConfigS2C(
                 double crystalCoinValue) implements CustomPacketPayload {
 
         public static final Type<SyncServerConfigS2C> TYPE = new Type<>(
-                        Identifier.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "sync_server_config"));
+                        ResourceLocation.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "sync_server_config"));
 
         public static StreamCodec<RegistryFriendlyByteBuf, SyncServerConfigS2C> STREAM_CODEC = StreamCodec.composite(
                         ByteBufCodecs.DOUBLE, SyncServerConfigS2C::silverCoinValue,

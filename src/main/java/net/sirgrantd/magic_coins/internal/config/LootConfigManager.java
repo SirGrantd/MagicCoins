@@ -2,7 +2,7 @@ package net.sirgrantd.magic_coins.internal.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.loading.FMLPaths;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,10 +17,10 @@ public class LootConfigManager {
 
     private static final Path CONFIG_DIR = FMLPaths.CONFIGDIR.get().resolve("magic_coins");
 
-    public static final Set<Identifier> COMMON_LOOTS = new HashSet<>();
-    public static final Set<Identifier> UNCOMMON_LOOTS = new HashSet<>();
-    public static final Set<Identifier> RARE_LOOTS = new HashSet<>();
-    public static final Set<Identifier> EPIC_LOOTS = new HashSet<>();
+    public static final Set<ResourceLocation> COMMON_LOOTS = new HashSet<>();
+    public static final Set<ResourceLocation> UNCOMMON_LOOTS = new HashSet<>();
+    public static final Set<ResourceLocation> RARE_LOOTS = new HashSet<>();
+    public static final Set<ResourceLocation> EPIC_LOOTS = new HashSet<>();
 
     public static void loadConfigs() {
 
@@ -36,7 +36,7 @@ public class LootConfigManager {
 
     }
 
-    private static void loadOrGenerate(String fileName, Set<Identifier> targetSet, List<String> defaultValues)
+    private static void loadOrGenerate(String fileName, Set<ResourceLocation> targetSet, List<String> defaultValues)
             throws IOException {
 
         Path filePath = CONFIG_DIR.resolve(fileName);
@@ -53,7 +53,7 @@ public class LootConfigManager {
 
         if (parsed != null && parsed.loot_tables != null) {
             for (String loc : parsed.loot_tables) {
-                targetSet.add(Identifier.parse(loc));
+                targetSet.add(ResourceLocation.parse(loc));
             }
         }
     }

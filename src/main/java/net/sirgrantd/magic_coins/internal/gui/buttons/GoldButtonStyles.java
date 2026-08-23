@@ -6,7 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.sirgrantd.celesthyd.api.CelesthydApi;
 import net.sirgrantd.magic_coins.MagicCoinsMod;
@@ -17,8 +17,8 @@ import net.sirgrantd.magic_coins.internal.init.MagicCoinsItems;
 public class GoldButtonStyles {
 
     public static final WidgetSprites SPRITES = new WidgetSprites(
-            Identifier.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "gold_button"),
-            Identifier.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "gold_button_highlighted"));
+            ResourceLocation.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "gold_button"),
+            ResourceLocation.fromNamespaceAndPath(MagicCoinsMod.MOD_ID, "gold_button_highlighted"));
 
     public static Supplier<Component> goldButtonTooltip = () -> Component
             .translatable("tooltip.magic_coins.button.gold_button");

@@ -3,20 +3,22 @@ package net.sirgrantd.magic_coins.internal.loots;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.sirgrantd.magic_coins.internal.config.ServerConfig;
+import net.sirgrantd.magic_coins.internal.init.MagicCoinsLootsConditions;
 import net.sirgrantd.magic_coins.internal.config.LootConfigManager;
 
 import java.util.List;
 import java.util.Optional;
 
-public record MagicCoinsChestCondition(Optional<List<Identifier>> lootTables, Optional<String> tier)
+public record MagicCoinsChestCondition(Optional<List<ResourceLocation>> lootTables, Optional<String> tier)
         implements LootItemCondition {
 
     public static final MapCodec<MagicCoinsChestCondition> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Identifier.CODEC.listOf().optionalFieldOf("loot_tables").forGetter(MagicCoinsChestCondition::lootTables),
+            ResourceLocation.CODEC.listOf().optionalFieldOf("loot_tables").forGetter(MagicCoinsChestCondition::lootTables),
             Codec.STRING.optionalFieldOf("tier").forGetter(MagicCoinsChestCondition::tier))
             .apply(inst, MagicCoinsChestCondition::new));
 
@@ -25,7 +27,7 @@ public record MagicCoinsChestCondition(Optional<List<Identifier>> lootTables, Op
         if (!ServerConfig.coinsLootChests)
             return false;
 
-        Identifier currentLootTable = context.getQueriedLootTableId();
+        ResourceLocation currentLootTable = context.getQueriedLootTableId();
         if (currentLootTable == null)
             return false;
 
@@ -56,7 +58,7 @@ public record MagicCoinsChestCondition(Optional<List<Identifier>> lootTables, Op
     }
 
     @Override
-    public MapCodec<? extends LootItemCondition> codec() {
-        return CODEC;
+    public LootItemConditionType getType() {
+        return MagicCoinsLootsConditions.MAGIC_COINS_CHEST.get();
     }
 }
