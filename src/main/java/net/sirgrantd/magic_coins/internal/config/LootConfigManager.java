@@ -3,7 +3,12 @@ package net.sirgrantd.magic_coins.internal.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.sirgrantd.magic_coins.MagicCoinsMod;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
+@EventBusSubscriber(modid = MagicCoinsMod.MOD_ID)
 public class LootConfigManager {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -53,9 +59,19 @@ public class LootConfigManager {
 
         if (parsed != null && parsed.loot_tables != null) {
             for (String loc : parsed.loot_tables) {
-                targetSet.add(ResourceLocation.parse(loc));
+                ResourceLocation parsedLoc = ResourceLocation.tryParse(loc);
+                if (parsedLoc != null) {
+                    targetSet.add(parsedLoc);
+                } else {
+                    MagicCoinsMod.LOGGER.warn("Invalid loot table ResourceLocation '{}' in {}", loc, fileName);
+                }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onAddReloadListener(AddReloadListenerEvent event) {
+        event.addListener((ResourceManagerReloadListener) resourceManager -> loadConfigs());
     }
 
     private static class ConfigFormat {
